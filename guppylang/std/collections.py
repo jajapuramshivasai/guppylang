@@ -174,12 +174,16 @@ def _pq_bubble_down(
     largest_idx = index
 
     # Find the largest among current node and its children
-    if (left_idx < self.size and
-        self.buf[left_idx].unwrap()[0] > self.buf[largest_idx].unwrap()[0]):
+    if (
+        left_idx < self.size
+        and self.buf[left_idx].unwrap()[0] > self.buf[largest_idx].unwrap()[0]
+    ):
         largest_idx = left_idx
 
-    if (right_idx < self.size and
-        self.buf[right_idx].unwrap()[0] > self.buf[largest_idx].unwrap()[0]):
+    if (
+        right_idx < self.size
+        and self.buf[right_idx].unwrap()[0] > self.buf[largest_idx].unwrap()[0]
+    ):
         largest_idx = right_idx
 
     # If largest is not the current node, swap and continue
@@ -216,7 +220,7 @@ def pq_push(
 @guppy
 @no_type_check
 def pq_pop(
-    self: PriorityQueue[T, MAX_SIZE] @ owned
+    self: PriorityQueue[T, MAX_SIZE] @ owned,
 ) -> tuple[int, T, PriorityQueue[T, MAX_SIZE]]:
     """Removes and returns the element with the highest priority.
 
@@ -245,7 +249,7 @@ def pq_pop(
 @guppy
 @no_type_check
 def pq_peek(
-    self: PriorityQueue[TCopyable, MAX_SIZE] @ owned
+    self: PriorityQueue[TCopyable, MAX_SIZE] @ owned,
 ) -> tuple[int, TCopyable, PriorityQueue[TCopyable, MAX_SIZE]]:
     """Returns the element with the highest priority without removing it.
 

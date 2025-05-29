@@ -1,8 +1,15 @@
 from guppylang import GuppyModule, guppy
 from guppylang.std.collections import (
-    Stack, empty_stack, PriorityQueue, empty_priority_queue,
-    pq_len, pq_push, pq_pop, pq_peek
+    Stack,
+    empty_stack,
+    PriorityQueue,
+    empty_priority_queue,
+    pq_len,
+    pq_push,
+    pq_pop,
+    pq_peek,
 )
+
 
 def test_stack(validate, run_int_fn) -> None:
     module = GuppyModule("test")
@@ -24,9 +31,9 @@ def test_stack(validate, run_int_fn) -> None:
     compiled = module.compile()
     validate(compiled)
     run_int_fn(
-        compiled,
-        sum((i + 1) * x for i, x in enumerate(reversed(list(range(10)))))
+        compiled, sum((i + 1) * x for i, x in enumerate(reversed(list(range(10)))))
     )
+
 
 def test_priority_queue_basic(validate, run_int_fn) -> None:
     """Test basic priority queue operations."""
@@ -62,6 +69,7 @@ def test_priority_queue_basic(validate, run_int_fn) -> None:
     validate(compiled)
     run_int_fn(compiled, 100)
 
+
 def test_priority_queue_ordering(validate, run_int_fn) -> None:
     """Test priority ordering - highest priority first."""
     module = GuppyModule("test_pq_order")
@@ -95,6 +103,7 @@ def test_priority_queue_ordering(validate, run_int_fn) -> None:
     validate(compiled)
     run_int_fn(compiled, 60)
 
+
 def test_priority_queue_stress(validate, run_int_fn) -> None:
     """Test with multiple elements to verify heap property."""
     module = GuppyModule("test_pq_stress")
@@ -109,7 +118,7 @@ def test_priority_queue_stress(validate, run_int_fn) -> None:
         pq = pq_push(pq, 2, 10)  # Highest
         pq = pq_push(pq, 3, 3)
         pq = pq_push(pq, 4, 8)
-        pq = pq_push(pq, 5, 1)   # Lowest
+        pq = pq_push(pq, 5, 1)  # Lowest
 
         if pq_len(pq) != 5:
             return -1
